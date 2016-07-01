@@ -1,2 +1,2 @@
 # docker-jasperreports-server-cp
-Jasper reports server community dockerisation
+Jasper reports server dockerisation
