@@ -1,15 +1,15 @@
-FROM ubuntu:14.04.4
+FROM ubuntu:15.04
 MAINTAINER JS Minet
 
-ENV jasperVersion 6.2.0
+ENV jasperEEVersion 6.2.0
 
-ADD https://d2ev2buidpvgfo.cloudfront.net/${jasperVersion}/Installers/jasperreports-server-${jasperVersion}-linux-x64-installer.run /home/root/
+ADD https://d2ev2buidpvgfo.cloudfront.net/${jasperVersion}/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
 
-RUN chmod a+x /home/root/jasperreports-server-${jasperVersion}-linux-x64-installer.run
+RUN chmod a+x /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run
 
-RUN /home/root/jasperreports-server-${jasperVersion}-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1
+RUN /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1
 
-WORKDIR /opt/jasperreports-server-${jasperVersion}
+WORKDIR /opt/jasperreports-server-${jasperEEVersion}
 
 EXPOSE 8080
 
