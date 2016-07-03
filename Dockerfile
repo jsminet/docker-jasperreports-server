@@ -3,7 +3,7 @@ MAINTAINER JS Minet
 
 ENV jasperEEVersion 6.2.0
 
-ADD https://d2ev2buidpvgfo.cloudfront.net/${jasperVersion}/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
+ADD https://d2ev2buidpvgfo.cloudfront.net/${jasperEEVersion}/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
 
 RUN chmod a+x /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run
 
