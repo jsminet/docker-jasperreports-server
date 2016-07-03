@@ -1,4 +1,5 @@
 FROM ubuntu:14.04.4
+MAINTAINER JS Minet
 
 ENV jasperVersion 6.2.1
 
@@ -7,4 +8,5 @@ RUN chmod +x /home/root/jasperreports-server-cp-${jasperVersion}-linux-x64-insta
 RUN /home/root/jasperreports-server-cp-${jasperVersion}-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1
 WORKDIR /opt/jasperreports-server-cp-${jasperVersion}
 EXPOSE 8080
-CMD sh ctlscript.sh start
+
+CMD ["ctlscript.sh","start"]
