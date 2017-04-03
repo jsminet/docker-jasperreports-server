@@ -1,9 +1,9 @@
 FROM ubuntu:15.04
 MAINTAINER JS Minet
 
-ENV jasperEEVersion 6.2.0
+ENV jasperEEVersion 6.3.0
 
-ADD https://d2ev2buidpvgfo.cloudfront.net/${jasperEEVersion}/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
+ADD https://d2ev2buidpvgfo.cloudfront.net/6.3/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
 
 RUN chmod a+x /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run
 
