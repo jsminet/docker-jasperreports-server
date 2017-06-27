@@ -1,16 +1,17 @@
-FROM ubuntu:15.04
+FROM ubuntu:17.04
 MAINTAINER JS Minet
 
-ENV jasperEEVersion 6.2.0
+ENV JASPER_EE_VERSION 6.2.0
 
-ADD https://d2ev2buidpvgfo.cloudfront.net/${jasperEEVersion}/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget \
+	&& wget --progress=bar:force:noscroll -O jasperreports-server-linux-x64-installer.run https://d2ev2buidpvgfo.cloudfront.net/${JASPER_EE_VERSION}/Installers/jasperreports-server-${JASPER_EE_VERSION}-linux-x64-installer.run \
+	&& chmod a+x jasperreports-server-linux-x64-installer.run \
+	&& /jasperreports-server-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1 \
+	&& rm jasperreports-server-linux-x64-installer.run \
+	&& apt-get clean
 
-RUN chmod a+x /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run
-
-RUN /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1
-
-WORKDIR /opt/jasperreports-server-${jasperEEVersion}
+WORKDIR /opt/jasperreports-server-${JASPER_EE_VERSION}
 
 EXPOSE 8080
 
-CMD sh ctlscript.sh start && /bin/bash
+CMD ctlscript.sh start && tail -f /dev/null
