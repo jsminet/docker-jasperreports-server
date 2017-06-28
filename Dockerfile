@@ -1,16 +1,20 @@
-FROM ubuntu:15.04
+FROM ubuntu:17.04
 MAINTAINER JS Minet
 
-ENV jasperEEVersion 6.3.0
+ENV JS_EE_VERSION 6.3.0
+ENV JS_EE_HOME /opt/jasperreports-server-${JS_EE_VERSION}
+ENV PATH $PATH:${JS_EE_HOME}
 
-ADD https://d2ev2buidpvgfo.cloudfront.net/6.3/Installers/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run /home/root/
+RUN apt-get update && apt-get install -y wget \
+	&& wget --progress=bar:force:noscroll -O jasperreports-server-linux-x64-installer.run https://d2ev2buidpvgfo.cloudfront.net/6.3/Installers/jasperreports-server-${JS_EE_VERSION}-linux-x64-installer.run \
+	&& chmod a+x jasperreports-server-linux-x64-installer.run \
+	&& /jasperreports-server-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1 \
+	&& rm jasperreports-server-linux-x64-installer.run \
+	&& rm -rf ${JS_EE_HOME}/apache-ant ${JS_EE_HOME}/apps ${JS_EE_HOME}/buildomatic \
+			  ${JS_EE_HOME}/docs ${JS_EE_HOME}/eval-licenses ${JS_EE_HOME}/samples ${JS_EE_HOME}/scripts \
+	&& rm ${JS_EE_HOME}/TIBCO-EULA.txt ${JS_EE_HOME}/uninstall \
+	&& apt-get clean
 
-RUN chmod a+x /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run
+EXPOSE 8080 
 
-RUN /home/root/jasperreports-server-${jasperEEVersion}-linux-x64-installer.run --mode unattended --jasperLicenseAccepted yes --postgres_password Postgres1
-
-WORKDIR /opt/jasperreports-server-${jasperEEVersion}
-
-EXPOSE 8080
-
-CMD sh ctlscript.sh start && /bin/bash
+CMD ctlscript.sh start && tail -f /dev/null
