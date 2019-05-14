@@ -11,9 +11,9 @@ The resulting images should be use for testing purpose only (See [my docker hub]
 #### Community edition
 $ docker run -itd -p 8080:8080 jsminet/docker-jasperreports-server:latest
 
-Then open a browser and go to http://192.168.99.100:8080/jasperserver-pro
+Then open a browser and go to http://192.168.99.100:8080/jasperserver
 
 #### Enterprise trial edition
 $ docker run -itd -p 8080:8080 jsminet/docker-jasperreports-server:EE/6.3.0
 
-Then open a browser and go to http://192.168.99.100:8080/jasperserver
+Then open a browser and go to http://192.168.99.100:8080/jasperserver-pro
