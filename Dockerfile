@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER JS Minet
+LABEL maintainer="JS Minet"
 
 ENV JS_EE_VERSION 7.1.1
 ENV JS_EE_HOME /opt/jasperreports-server-${JS_EE_VERSION}
