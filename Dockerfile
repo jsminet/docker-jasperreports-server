@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y wget \
 	--mode unattended \
 	--jasperLicenseAccepted yes \
 	--postgres_password ${PASSWORD} \
+	--chromium_folder_windows C: \
 	--chromium_folder_unix /usr/var \
 	--postgres_installation_type bundled \
 	--tomcat_installation_type bundled \
