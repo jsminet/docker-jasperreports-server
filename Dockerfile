@@ -24,4 +24,4 @@ RUN apt-get update && apt-get install -y wget \
 	&& apt-get clean
 
 ENTRYPOINT [ "ctlscript.sh" ]
-CMD [ "start" ]
+CMD [ "start", "sleep", "infinity" ]
