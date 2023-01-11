@@ -23,5 +23,4 @@ RUN apt-get update && apt-get install -y wget \
 	&& rm ${JS_EE_HOME}/uninstall \
 	&& apt-get clean
 
-ENTRYPOINT [ "ctlscript.sh" ]
-CMD [ "start", "sleep", "infinity" ]
+CMD ctlscript.sh start && tail -f /dev/null
